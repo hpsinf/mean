@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const server = express()
 
+
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
 
@@ -11,6 +12,4 @@ server.listen(port, ()=>{
     console.log(`BACKEND na porta ${port}.`)
 })
 
-server.use(function( req, res, next){
-    res.send('OK')
-})
+module.exports = server
