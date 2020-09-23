@@ -1,4 +1,4 @@
-angular.module('primeiraApp', [
+angular.module('HPS', [
     'ui.router',
     'ngAnimate',
     'toastr'
