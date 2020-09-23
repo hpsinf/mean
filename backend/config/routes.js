@@ -17,4 +17,6 @@ module.exports = function(server) {
     const billingSummaryService = require('../api/billingSummary/billingSummaryServices')
     router.route('/billingsummary').get(billingSummaryService.getSummary)
 
+    console.log('Rotas OK')
+    
 }

@@ -1,7 +1,6 @@
 //mongoose ODM mongoDB
 const mongoose = require('mongoose')
 const dadosBD = require('./dadosAcessoBD')
-const msg = require('./msgPT_BR')
 
 mongoose.set('useFindAndModify', false)
 
@@ -14,7 +13,6 @@ db.on('error', err => {
 })
 
 db.once('open', () => {
-    msg()
     console.log("Conexão ao BD OK")
 })
 
