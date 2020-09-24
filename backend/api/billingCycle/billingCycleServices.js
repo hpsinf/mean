@@ -11,7 +11,7 @@ function sendErrorOrNext (req, res, next) {
 
     if (bundle.errors) {
         var errors = parseErrors(bundle.errors)
-        res.status(500).json({errors})
+        res.status(500).json({errors})        
     }
     else{
         next()
@@ -30,6 +30,7 @@ BillingCycle.route('count', function (req, res, next) {
     BillingCycle.countDocuments(function (error, value) {
         if (error) {
             res.status(500).json({erros: [error]})
+            //res.status(500).json(error)
         } else {
             res.json({value})
         }
