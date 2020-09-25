@@ -21,8 +21,8 @@
             $http.post(url, vm.billingCycle).then((resp)=>{
                 vm.refresh()
                 msgs.addSuccess('Operação efetuda com sucesso')             
-            }).catch((data)=>{
-                msgs.addError(data.data.errors)
+            }).catch((msgsErro)=>{
+                msgs.addError(msgsErro.data.errors)
             })
         }
         
