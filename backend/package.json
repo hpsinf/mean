@@ -16,10 +16,10 @@
     "lodash": "^4.17.20",
     "mongoose": "^5.10.4",
     "mongoose-paginate": "^5.0.3",
-    "node-restful": "^0.2.6",
-    "pm2": "^4.4.1"
+    "node-restful": "^0.2.6"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "pm2": "^4.4.1"
   }
 }
