@@ -1,4 +1,4 @@
-const port = 3003
+const port = process.env.PORT || 3003 
 const msg = require('./msgPT_BR')
 
 //body-parser  middleware responsável pelo parser nas resquições

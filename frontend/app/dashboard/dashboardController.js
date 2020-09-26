@@ -7,7 +7,7 @@
     function DashboardController($http) {
         const vm = this
         vm.getSummary = function () {
-            const url = 'http://localhost:3003/api/billingSummary'
+            const url = 'https://meanhps.herokuapp.com/api/billingSummary'
             $http.get(url).then((response) => {
                 const {credit = 0, debt = 0} = response.data
                 vm.credit = credit
