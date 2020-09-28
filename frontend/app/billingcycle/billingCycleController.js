@@ -13,7 +13,7 @@
 
         vm.refresh = () => {
             $http.get(url).then((resp) => {
-                vm.billingCycle = {}
+                vm.billingCycle = {credits: [{}], debts: [{}]}
                 vm.billingCycles = resp.data                                
                 tabs.show(vm, { tabList: true, tabCreate: true })
                 //console.log('Refresh')
@@ -44,8 +44,7 @@
             $http.put(urlBillingCycle_id, vm.billingCycle).then((resp) => {
                 vm.refresh()
                 if (resp.status = 200)
-                    msgs.addSuccess('Operação efetuda com sucesso')
-                //console.log(resp) 
+                    msgs.addSuccess('Operação efetuda com sucesso')                
             }).catch((data) => {
                 msgs.addError(data.data.errors)
             })
