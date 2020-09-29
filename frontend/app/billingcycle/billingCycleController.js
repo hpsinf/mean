@@ -53,8 +53,8 @@
                 vm.refresh()
                 if (resp.status = 200)
                     msgs.addSuccess('Operação efetuda com sucesso')                
-            }).catch((data) => {
-                msgs.addError(data.data.errors)
+            }).catch((resp) => {
+                msgs.addError(resp.data.errors)
             })
         }
 
@@ -64,8 +64,8 @@
                 vm.refresh()
                 if (resp.status = 200)
                     msgs.addSuccess('Operação efetuda com sucesso')
-            }).catch((data) => {
-                msgs.addError(data.data.errors)
+            }).catch((resp) => {
+                msgs.addError(resp.data.errors)
             })
         }
         vm.addCredit = (indice) => {

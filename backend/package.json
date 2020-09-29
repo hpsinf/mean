@@ -15,8 +15,10 @@
     "express-query-int": "^3.0.0",
     "lodash": "^4.17.20",
     "mongoose": "^5.10.4",
-    "mongoose-paginate": "^5.0.3",
-    "node-restful": "^0.2.6"
+    "mongoose-paginate": "^5.0.3",    
+    "node-restful": "^0.2.6",
+    "jsonwebtoken": "8.5.1",
+    "bcrypt": "5.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",

@@ -13,7 +13,7 @@
             'gridSystem',
             function (gridSystem) {
                 //metodo de ciclo de vida do controller, chama on init depois que os bindings estiverem inicializados
-                this.$onInit = function () {
+                this.$onInit = () => {
                     this.gridClasses = gridSystem.toCssClasses(this.grid)
                 }
             }
