@@ -8,6 +8,13 @@
         
         <field label="Ano" id="year" grid="12 6 4" placeholder="Informe o ano" 
         model="bcCtrl.billingCycle.year" type="Number" readonly="bcCtrl.tabDelete"></field>  
+
+        <div class="col-xs-12">
+            <fieldset>
+                <legend>Resumo</legend>
+                <div ng-include="'billingcycle/summary.html'"></div>
+            </fieldset>
+        </div>
                 
         <div class="col-xs-12 col-sm-6">
             <fieldset>

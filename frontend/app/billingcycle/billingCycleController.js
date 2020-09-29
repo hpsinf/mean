@@ -14,9 +14,9 @@
         vm.refresh = () => {
             $http.get(url).then((resp) => {
                 vm.billingCycle = {credits: [{}], debts: [{}]}
-                vm.billingCycles = resp.data                                
-                tabs.show(vm, { tabList: true, tabCreate: true })
-                //console.log('Refresh')
+                vm.billingCycles = resp.data  
+                vm.calculateValues()                              
+                tabs.show(vm, { tabList: true, tabCreate: true })                
             })
         }
 
@@ -31,11 +31,13 @@
 
         vm.showTabUpdate = (billingCycle) => {
             vm.billingCycle = billingCycle
+            vm.calculateValues()
             tabs.show(vm, { tabUpdate: true })
         }
 
         vm.showTabDelete = (billingCycle) => {
             vm.billingCycle = billingCycle
+            vm.calculateValues()
             tabs.show(vm, { tabDelete: true })
         }
 
@@ -59,6 +61,54 @@
             }).catch((data) => {
                 msgs.addError(data.data.errors)
             })
+        }
+        vm.addCredit = (indice) => {
+            vm.billingCycle.credits.splice(indice + 1, 0, {})
+        }
+        
+        vm.cloneCredit = (indice, {name, value}) => {
+            vm.billingCycle.credits.splice(indice + 1, 0, {name, value})
+            vm.calculateValues()                              
+        }
+
+        vm.deleteCredit = (indice) => {
+            if (vm.billingCycle.credits.length > 1) {
+                vm.billingCycle.credits.splice(indice, 1)
+                vm.calculateValues()                              
+            }
+            
+        }
+
+        vm.addDebt = (indice) => {
+            vm.billingCycle.debts.splice(indice + 1, 0, {})
+        }
+        
+        vm.cloneDebt = (indice, {name, value, status}) => {
+            vm.billingCycle.debts.splice(indice + 1, 0, {name, value, status})
+            vm.calculateValues()
+        }
+
+        vm.deleteDebt = (indice) => {
+            if (vm.billingCycle.debts.length > 1){
+                vm.billingCycle.debts.splice(indice, 1)
+                vm.calculateValues()
+            }
+            
+        }
+        
+        vm.calculateValues = () => {
+            vm.credit = 0
+            vm.debt = 0    
+            if (vm.billingCycle) {
+                vm.billingCycle.credits.forEach(({value}) => {
+                    vm.credit += !value || isNaN(value) ? 0 : parseFloat(value)                    
+                })
+
+                vm.billingCycle.debts.forEach(({value}) => {
+                    vm.debt += !value || isNaN(value) ? 0 : parseFloat(value)                    
+                })
+            }
+            vm.total = vm.credit - vm.debt
         }
         vm.refresh()
     }
