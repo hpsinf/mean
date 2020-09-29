@@ -1,22 +1,28 @@
 (function () {
     angular.module('HPS').controller('BillingCycleCtrl', [
         '$http',
+        '$location',
         'msgs',
         'tabs',
         BillingCycleController
     ])
 
 
-    function BillingCycleController($http, msgs, tabs) {
+    function BillingCycleController($http, $location, msgs, tabs) {
         const vm = this
         const url = 'https://meanhps.herokuapp.com/api/billingcycles'            
 
         vm.refresh = () => {
-            $http.get(url).then((resp) => {
+            const page = parseInt($location.search().page) || 1            
+            $http.get(`${url}?skip=${(page - 1) * 8}&limit=8`).then((resp) => {
                 vm.billingCycle = {credits: [{}], debts: [{}]}
                 vm.billingCycles = resp.data  
                 vm.calculateValues()                              
-                tabs.show(vm, { tabList: true, tabCreate: true })                
+                
+                $http.get(`${url}/count`).then((resp) => {
+                    vm.pages = Math.ceil(resp.data.value / 8)                               
+                    tabs.show(vm, { tabList: true, tabCreate: true })    
+                })            
             })
         }
 
