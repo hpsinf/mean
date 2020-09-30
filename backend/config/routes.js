@@ -1,10 +1,24 @@
 const express = require('express')
+const auth = require('./auth')
+
+
 
 module.exports = function(server) {
-    // API Router
-    const router = express.Router()
-    server.use('/api', router)
 
+    //Rotas Abertas
+    const openApi = express.Router()
+    server.use('/oapi', openApi)
+
+    const authService = require('../api/user/authServices')
+    openApi.post('/login', authService.login)
+    openApi.post('/signup', authService.signup)
+    openApi.post('/validate', authService.validateToken)
+
+    // Rotas protegidas
+    const protectApi = express.Router()
+    server.use('/api', protectApi)
+    protectApi.use(auth)
+        
     server.get('/', (req, res)=>{
         res.send('Server OK')
     })
@@ -12,11 +26,11 @@ module.exports = function(server) {
     //rotas da API
     const billingCycleService = require('../api/billingCycle/billingCycleServices')
     //registra todos os metodos automaticamente
-    billingCycleService.register(router, '/billingcycles')
+    billingCycleService.register(protectApi, '/billingcycles')
 
     const billingSummaryService = require('../api/billingSummary/billingSummaryServices')
-    router.route('/billingsummary').get(billingSummaryService.getSummary)
+    protectApi.route('/billingsummary').get(billingSummaryService.getSummary)
 
     console.log('Rotas OK')
-    
+        
 }

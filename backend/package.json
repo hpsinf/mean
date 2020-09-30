@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "loader.js",
-  "scripts": {
+  "scripts": {    
     "dev": "nodemon",
     "production": "pm2 start loader.js --name backend --watch"
   },
