@@ -5,4 +5,7 @@
 
 <nav class="navbar navbar-static-top">
     <a href class="sidebar-toggle" data-toggle="offcanvas"></a>
+    <div class="pull-left">
+        <li class="dropdown user user-menu" ng-include="'/template/user.html'" ng-controller="AuthCtrl as auth"></li>
+    </div>
 </nav>

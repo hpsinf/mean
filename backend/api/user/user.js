@@ -9,4 +9,4 @@ const userSchema = new mongoose.Schema({
 
 })
 
-module.exports = restful.model('User', userSchema)
+module.exports = restful.model('usuario', userSchema)
