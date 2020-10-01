@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
-const env = require('../config/env')
-
+const env = require('./env')
 
 module.exports = (req, res, next) => {
     
@@ -14,7 +13,7 @@ module.exports = (req, res, next) => {
             return res.status(403).send({errors: ["Autorização de acesso não fornecido."]})
         }
 
-        jwt.verify(token, env.authSecret, (err, decoded) => {
+        jwt.verify(token, env.authSecret(), (err, decoded) => {
             if (err) {
                 res.status(403).send({
                     errors: ["Falha de autenticação."]

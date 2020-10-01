@@ -3,7 +3,7 @@ const auth = require('./auth')
 
 
 
-module.exports = function(server) {
+module.exports = (server) => {
 
     //Rotas Abertas
     const openApi = express.Router()
