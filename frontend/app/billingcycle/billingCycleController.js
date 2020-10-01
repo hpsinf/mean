@@ -5,13 +5,14 @@
         'msgs',
         'tabs',
         'auth',
+        'consts',
         BillingCycleController
     ])
 
 
-    function BillingCycleController($http, $location, msgs, tabs, auth) {
+    function BillingCycleController($http, $location, msgs, tabs, auth, consts) {
         const vm = this
-        const url = 'http://localhost:3003/api/billingcycles' //'https://meanhps.herokuapp.com/api/billingcycles'            
+        const url = `${consts.apiUrl}/billingcycles` 
 
         vm.refresh = () => {
             const page = parseInt($location.search().page) || 1
